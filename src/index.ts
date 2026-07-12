@@ -1,3 +1,5 @@
-import { Workspace } from "./Workspace"
+import { Workspace } from "./Workspace.ts";
 
-const workspace = new Workspace()
+export class BlockBuilder extends Workspace {}
+
+(window as any).BlockBuilder = BlockBuilder;
