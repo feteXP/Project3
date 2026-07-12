@@ -1,1 +1,37 @@
 <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BlockBuilder Test</title>
+    <link rel="stylesheet" href="style.css"/>
+</head>
+
+<body>
+
+<div id="editor"></div>
+
+<script src="blockbuilder.js"></script>
+
+<script>
+    const editor = document.getElementById("editor");
+
+    const workspace = new BlockBuilder(editor);
+
+    workspace.createBlock({
+        text: "Print",
+        x: 50,
+        y: 50,
+        color: "#4CAF50"
+    });
+
+    workspace.createBlock({
+        text: "Loop",
+        x: 50,
+        y: 120,
+        color: "#2196F3"
+    });
+</script>
+
+</body>
+</html>
