@@ -4,15 +4,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>BlockBuilder</title>
-    <link rel="stylesheet" href="style.css"/>
+    <title>BlockBuilder Demo</title>
+
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
 <div id="editor"></div>
 
-<button onclick="save()">Save</button>
+<div class="buttons">
+    <button onclick="saveProject()">Save</button>
+    <button onclick="loadProject()">Load</button>
+    <button onclick="restoreBackup()">Restore Backup</button>
+</div>
+
 
 <script src="blockbuilder.js"></script>
 
@@ -21,6 +27,12 @@ const workspace = new BlockBuilder(
     document.getElementById("editor")
 );
 
+
+// Enable automatic sessionStorage backups
+workspace.enableBackups(5000);
+
+
+// Create example blocks
 workspace.createBlock({
     text: "Print",
     x: 50,
@@ -35,6 +47,41 @@ workspace.createBlock({
     color: "#2196F3"
 });
 
+
+// Save project to localStorage
+function saveProject() {
+    const data = workspace.save();
+
+    localStorage.setItem(
+        "blockbuilder_project",
+        data
+    );
+
+    console.log("Project saved");
+}
+
+
+// Load project from localStorage
+function loadProject() {
+    const data = localStorage.getItem(
+        "blockbuilder_project"
+    );
+
+    if (data) {
+        workspace.load(data);
+    }
+}
+
+
+// Restore sessionStorage backup
+function restoreBackup() {
+    workspace.restoreBackup();
+}
+
+</script>
+
+</body>
+</html>
 
 function save() {
     const data = workspace.save();
