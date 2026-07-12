@@ -1,5 +1,20 @@
-import { Workspace } from "./Workspace.ts";
+import { Workspace } from "./Workspace";
+import { Block } from "./Block";
 
-export class BlockBuilder extends Workspace {}
+export { Workspace };
+export { Block };
 
-(window as any).BlockBuilder = BlockBuilder;
+export class BlockBuilder extends Workspace {
+    constructor(container: HTMLElement) {
+        super(container);
+    }
+}
+
+// Global browser API
+declare global {
+    interface Window {
+        BlockBuilder: typeof BlockBuilder;
+    }
+}
+
+window.BlockBuilder = BlockBuilder;
