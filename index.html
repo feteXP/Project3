@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BlockBuilder Test</title>
+
+    <title>BlockBuilder</title>
     <link rel="stylesheet" href="style.css"/>
 </head>
 
@@ -11,27 +12,41 @@
 
 <div id="editor"></div>
 
+<button onclick="save()">Save</button>
+
 <script src="blockbuilder.js"></script>
 
 <script>
-    const editor = document.getElementById("editor");
+const workspace = new BlockBuilder(
+    document.getElementById("editor")
+);
 
-    const workspace = new BlockBuilder(editor);
+workspace.createBlock({
+    text: "Print",
+    x: 50,
+    y: 50,
+    color: "#4CAF50"
+});
 
-    workspace.createBlock({
-        text: "Print",
-        x: 50,
-        y: 50,
-        color: "#4CAF50"
-    });
+workspace.createBlock({
+    text: "Loop",
+    x: 50,
+    y: 120,
+    color: "#2196F3"
+});
 
-    workspace.createBlock({
-        text: "Loop",
-        x: 50,
-        y: 120,
-        color: "#2196F3"
-    });
+
+function save() {
+    const data = workspace.save();
+
+    console.log(data);
+
+    localStorage.setItem(
+        "workspace",
+        data
+    );
+}
 </script>
 
 </body>
-</html>
+</html></html>
